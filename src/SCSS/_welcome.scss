@@ -1,0 +1,6 @@
+@use "config";
+header {
+  height: 100px;
+  @include flexCenter($flex-direction: row);
+  
+}
