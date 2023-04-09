@@ -1,0 +1,24 @@
+@use "../components/navbar" as navbar;
+@use "../abstract/" as abstract;
+
+.header-title {
+  @include abstract.flexCenter(column);
+
+  h1 {
+    margin-top: 20px;
+    font-size: abstract.getFontSize("header");
+  }
+}
+
+.login-register-span {
+  @include abstract.flexCenter();
+  margin: 60px 0;
+
+  width: 100%;
+
+  @include abstract.anchorDesign(black);
+
+  gap: 240px;
+
+  font-size: abstract.getFontSize("large");
+}

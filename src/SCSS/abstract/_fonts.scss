@@ -1,0 +1,10 @@
+$fonts-sizing: (
+  "normal": 1.1rem,
+  "small": 0.8rem,
+  "large": 1.7rem,
+  "header": 2.6rem,
+);
+
+@function getFontSize($font-size) {
+  @return map-get($fonts-sizing, $font-size);
+}

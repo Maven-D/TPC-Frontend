@@ -1,0 +1,21 @@
+@use "../abstract" as *;
+
+header {
+  height: 100px;
+  width: 100%;
+  @include flexCenter();
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: $primary-color;
+
+  .logo {
+    flex-grow: 1;
+  }
+
+  @include anchorDesign();
+
+  .nav-bar {
+    @include flexCenter();
+    gap: 8px;
+  }
+}
