@@ -1,0 +1,15 @@
+@use "../abstract/mixins" as *;
+
+.grid-element {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 20px 0;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  .grid-column-elem {
+    @include flexCenter(column);
+  }
+}

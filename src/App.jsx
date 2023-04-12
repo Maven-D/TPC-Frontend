@@ -1,8 +1,6 @@
 import {
   createBrowserRouter,
-  createRoutesFromElements,
   redirect,
-  Route,
   RouterProvider,
 } from "react-router-dom";
 import Welcome from "./Views/Welcome";

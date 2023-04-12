@@ -1,6 +1,7 @@
 import React from "react";
 import NavbarWelcome from "../components/NavbarWelcome";
 import { Link } from "react-router-dom";
+import NewsGalary from "../components/NewsGalary";
 
 function Welcome() {
   return (
@@ -11,13 +12,14 @@ function Welcome() {
         <h1>IIT Patna</h1>
       </div>
       <div className="login-register-span">
-        <Link>
+        <Link to="/login">
           <span>Login</span>
         </Link>
-        <Link>
+        <Link to="/register">
           <span>Register</span>
         </Link>
       </div>
+      <NewsGalary />
     </>
   );
 }

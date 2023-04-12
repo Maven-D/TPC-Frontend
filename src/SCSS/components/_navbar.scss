@@ -1,21 +1,22 @@
-@use "../abstract" as *;
+@use "../abstract/mixins" as mixins;
+@use "../abstract/colors" as colors;
 
 header {
   height: 100px;
   width: 100%;
-  @include flexCenter();
+  @include mixins.flexCenter();
   padding-left: 30px;
   padding-right: 30px;
-  background-color: $primary-color;
+  background-color: colors.$primary-color;
 
   .logo {
     flex-grow: 1;
   }
 
-  @include anchorDesign();
+  @include mixins.anchorDesign();
 
   .nav-bar {
-    @include flexCenter();
+    @include mixins.flexCenter();
     gap: 8px;
   }
 }

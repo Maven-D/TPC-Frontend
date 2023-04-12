@@ -1,5 +1,6 @@
 @use "../components/navbar" as navbar;
 @use "../abstract/" as abstract;
+@use "../components/newsrow" as newsrow;
 
 .header-title {
   @include abstract.flexCenter(column);
