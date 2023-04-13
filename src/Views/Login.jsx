@@ -23,14 +23,15 @@ function Login() {
         email: email,
         password: password,
       }),
-    }).then((res) => {
-      if (res.status == 200) {
-        toast.success("Login Successful!");
-        // TODO: goto home page
-      } else {
-        toast.error("Invalid credentials provided!");
-      }
-    });
+    }).then((res) =>
+      res.json().then((data) => {
+        if (data.message == "Success") {
+          toast.success("Login Successful!");
+        } else {
+          toast.error("Invalid data provided!");
+        }
+      })
+    );
   }
 
   return (
