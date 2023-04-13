@@ -25,6 +25,7 @@ function Login() {
       }),
     }).then((res) => {
       if (res.status == 200) {
+        toast.success("Login Successful!");
         // TODO: goto home page
       } else {
         toast.error("Invalid credentials provided!");
