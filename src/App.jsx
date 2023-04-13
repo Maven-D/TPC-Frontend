@@ -21,13 +21,13 @@ function App() {
       loader: async () => {
         const user = await getUser();
         if (!user.isLogin) {
-          return redirect("/home");
+          return redirect("/welcome");
         }
         return user;
       },
     },
     {
-      path: "/home",
+      path: "/welcome",
       element: <Welcome />,
     },
     {

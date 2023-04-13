@@ -9,11 +9,19 @@ function Reigster() {
     switch (userType) {
       case "Student":
         return (
-          <input
-            type="text"
-            placeholder="Roll Number"
-            id="register-roll-number"
-          />
+          <>
+            <input
+              type="text"
+              placeholder="Roll Number"
+              id="register-roll-number"
+            />
+            <input type="text" placeholder="Batch" id="register-batch" />
+            <input
+              type="text"
+              placeholder="Specialization"
+              id="register-specialization"
+            />
+          </>
         );
         break;
       case "Company":
@@ -35,8 +43,15 @@ function Reigster() {
     ).value;
     const name = document.getElementById("register-name").value;
     const rollNumberElem = document.getElementById("register-roll-number");
+    const batchElem = document.getElementById("register-batch");
+    const specializationElem = document.getElementById(
+      "register-specialization"
+    );
 
     const rollNumber = rollNumberElem != null ? rollNumberElem.value : "";
+    const batch = batchElem != null ? batchElem.value : "";
+    const specialization =
+      specializationElem != null ? specializationElem.value : "";
     if (/\w+/.test(name) == false) {
       toast.error("Invalid Name!");
       return;
@@ -63,9 +78,12 @@ function Reigster() {
         email: email,
         password: password,
         roll_no: rollNumber,
+        batch: batch,
+        specialization: specialization,
       }),
     }).then((res) => {
       if (res.status == 200) {
+        toast.success("Register Successful!");
         //goto login page
       } else {
         toast.error("Could not register!");

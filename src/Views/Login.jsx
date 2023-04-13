@@ -27,6 +27,7 @@ function Login() {
       res.json().then((data) => {
         if (data.message == "Success") {
           toast.success("Login Successful!");
+          // todo redirect to home page
         } else {
           toast.error("Invalid data provided!");
         }
