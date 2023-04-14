@@ -10,21 +10,25 @@ import Home from "./Views/Home";
 import "./SCSS/main.scss";
 
 function App() {
+  
   async function getUser() {
-    return fetch("user/");
+    return await fetch('/api/user/').then((res) => res.json());
   }
+
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
       loader: async () => {
-        const user = await getUser();
-        if (!user.isLogin) {
-          return redirect("/welcome");
-        }
-        return user;
-      },
+        return getUser().then((data) => {
+          if (data.user) {
+            return <Home user={data.user} />;
+          } else {
+            return redirect("/welcome");
+          }
+        });
+      }
     },
     {
       path: "/welcome",

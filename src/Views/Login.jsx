@@ -1,8 +1,11 @@
 import React from "react";
+import {redirect, useNavigate} from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
+  const navigate = useNavigate();
+
   function userLogin() {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
@@ -26,7 +29,14 @@ function Login() {
     }).then((res) =>
       res.json().then((data) => {
         if (data.message == "Success") {
-          toast.success("Login Successful!");
+          
+          // console.log(`/:${data.user}`);
+          // return redirect(`/:${data.user}`);
+          navigate("/", {
+            replace: true,
+            state: {user: data.user}
+            
+          });
           // todo redirect to home page
         } else {
           toast.error("Invalid data provided!");

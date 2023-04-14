@@ -1,0 +1,33 @@
+@use '../abstract/mixins' as mixins;
+.search-holder {
+    width: 100%;
+    margin-top: 40px;
+    @include mixins.flexCenter();
+    gap: 20px;
+
+    input {
+        width: 60%;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 10px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    button {
+        
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 10px;
+        font-size: 16px;
+        outline: none;
+        background-color: #ccc;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #aaa;
+        }
+    }
+}

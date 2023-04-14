@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function NavbarWelcome() {
   return (
     <header>
-      <Link to="/" className="logo">
+      <Link to="/welcome" className="logo">
         <img src="" alt="logo" className="image nav-logo" />
       </Link>
       <nav className="nav-bar">
