@@ -28,7 +28,7 @@ function Reigster() {
         return <input type="text" placeholder="Something for Company" />;
         break;
       case "Alumni":
-        return <input type="text" placeholder="Something for Alumni" />;
+        return <input type="text" placeholder="Roll No" />;
         break;
       default:
         break;
