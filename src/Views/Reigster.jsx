@@ -29,6 +29,7 @@ function Reigster() {
       case "company":
         return <input type="text" placeholder="Something for Company" />;
         break;
+<<<<<<< HEAD
       case "alumni":
         return (
           <input
@@ -37,6 +38,10 @@ function Reigster() {
             id="register-roll-number"
           />
         );
+=======
+      case "Alumni":
+        return <input type="text" placeholder="Roll No" />;
+>>>>>>> 4a3b7ce994f9d03d1ec590ea5e54d5fa10b64ab1
         break;
       default:
         break;
