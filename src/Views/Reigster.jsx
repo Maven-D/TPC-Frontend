@@ -1,13 +1,15 @@
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Reigster() {
   const [userType, setUserType] = useState("Student");
+  const navigator = useNavigate();
 
   const userTypeSelection = () => {
     switch (userType) {
-      case "Student":
+      case "student":
         return (
           <>
             <input
@@ -24,11 +26,17 @@ function Reigster() {
           </>
         );
         break;
-      case "Company":
+      case "company":
         return <input type="text" placeholder="Something for Company" />;
         break;
-      case "Alumni":
-        return <input type="text" placeholder="Something for Alumni" />;
+      case "alumni":
+        return (
+          <input
+            type="text"
+            placeholder="Roll Number"
+            id="register-roll-number"
+          />
+        );
         break;
       default:
         break;
@@ -80,10 +88,12 @@ function Reigster() {
         roll_no: rollNumber,
         batch: batch,
         specialization: specialization,
+        user_type: userType,
       }),
     }).then((res) => {
       if (res.status == 200) {
         toast.success("Register Successful!");
+        navigator("/login");
         //goto login page
       } else {
         toast.error("Could not register!");
@@ -96,9 +106,9 @@ function Reigster() {
       <h2 className="header">Register</h2>
       <div className="details">
         <select value={userType} onChange={(e) => setUserType(e.target.value)}>
-          <option value="Student">Student</option>
-          <option value="Company">Company</option>
-          <option value="Alumni">Alumni</option>
+          <option value="student">Student</option>
+          <option value="company">Company</option>
+          <option value="alumni">Alumni</option>
         </select>
         {userTypeSelection()}
         <input type="email" placeholder="Name" id="register-name" />

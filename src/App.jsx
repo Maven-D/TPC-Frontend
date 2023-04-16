@@ -8,13 +8,14 @@ import Login from "./Views/Login";
 import Register from "./Views/Reigster";
 import Home from "./Views/Home";
 import "./SCSS/main.scss";
+import Profile from "./Views/Profile";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  
   async function getUser() {
-    return await fetch('/api/user/').then((res) => res.json());
+    return await fetch("/api/user/").then((res) => res.json());
   }
-
 
   const router = createBrowserRouter([
     {
@@ -28,7 +29,7 @@ function App() {
             return redirect("/welcome");
           }
         });
-      }
+      },
     },
     {
       path: "/welcome",
@@ -42,9 +43,29 @@ function App() {
       path: "/register",
       element: <Register />,
     },
+    {
+      path: "/profile",
+      element: <Profile />,
+    },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+    </>
+  );
 }
 
 export default App;

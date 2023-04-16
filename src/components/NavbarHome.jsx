@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavbarHome() {
+  const navigator = useNavigate();
   function logout() {
     fetch("/api/logout/", {
       method: "POST",
@@ -22,8 +23,13 @@ function NavbarHome() {
         <img src="" alt="logo" className="image nav-logo" />
       </Link>
       <nav className="nav-bar">
+        <Link to="/profile" state={{ userType: "student", userLogin: true }}>
+          <div className="nav-item">Profile</div>
+        </Link>
         <Link to="/welcome">
-          <div className="nav-item" onClick={logout}>Logout</div>
+          <div className="nav-item" onClick={logout}>
+            Logout
+          </div>
         </Link>
       </nav>
     </header>
