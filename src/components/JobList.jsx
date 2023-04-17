@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 
 // import styled from "styled-components";
 import { useTable, useSortBy } from "react-table";
+import { toast } from "react-toastify";
 
 function JobList() {
   const [data, setData] = useState([]);
@@ -31,7 +32,21 @@ function JobList() {
     );
   }, []);
 
-  const applyForJob = () => {};
+  const applyForJob = () => {
+    fetch("/api/apply/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jid: jobsArr["sno"],
+      }),
+    }).then((res) => {
+      if (res.ok()) {
+        toast.success("Applied Successfully!");
+      }
+    });
+  };
   const columns = useMemo(
     () => [
       {
@@ -53,7 +68,11 @@ function JobList() {
       {
         Header: "Apply",
         accessor: "apply",
-        Cell: (props) => <div onClick={applyForJob}> Apply Here</div>,
+        Cell: (props) => (
+          <div onClick={applyForJob} style={{ cursor: "pointer" }}>
+            Apply Here
+          </div>
+        ),
       },
     ],
     []

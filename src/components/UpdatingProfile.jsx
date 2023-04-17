@@ -90,7 +90,7 @@ function UpdatingProfile({
     const updatedResume = document.getElementById("update-resume").files[0];
     if (data["fields"]["resume"] != "") return;
     fetch("/api/uploadresume/", {
-      method: "PUT",
+      method: "POST",
       body: updatedResume,
       // 👇 Set headers manually for single file upload
       headers: {
