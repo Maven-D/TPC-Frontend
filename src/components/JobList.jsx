@@ -1,8 +1,13 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 // import styled from "styled-components";
 import { useTable, useSortBy } from "react-table";
 
 function JobList() {
+  const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("/api/");
+  // }, []);
   const columns = useMemo(
     () => [
       {
@@ -25,15 +30,15 @@ function JobList() {
     []
   );
 
-  const data = useMemo(
-    () => [
-      { sno: 1, job_title: "SDE", company: "Google", ctc: 1000000 },
-      { sno: 2, job_title: "SDE", company: "Google", ctc: 800000 },
-      { sno: 3, job_title: "SDE", company: "Google", ctc: 900000 },
-      { sno: 4, job_title: "SDE", company: "Google", ctc: 700000 },
-    ],
-    []
-  );
+  // const data = useMemo(
+  //   () => [
+  //     { sno: 1, job_title: "SDE", company: "Google", ctc: 1000000 },
+  //     { sno: 2, job_title: "SDE", company: "Google", ctc: 800000 },
+  //     { sno: 3, job_title: "SDE", company: "Google", ctc: 900000 },
+  //     { sno: 4, job_title: "SDE", company: "Google", ctc: 700000 },
+  //   ],
+  //   []
+  // );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
