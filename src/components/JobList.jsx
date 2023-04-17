@@ -30,6 +30,8 @@ function JobList() {
       })
     );
   }, []);
+
+  const applyForJob = () => {};
   const columns = useMemo(
     () => [
       {
@@ -51,9 +53,7 @@ function JobList() {
       {
         Header: "Apply",
         accessor: "apply",
-        Cell: (props) => (
-          <a href={props.row.original.nameOfUrlProperty}> Apply Here</a>
-        ),
+        Cell: (props) => <div onClick={applyForJob}> Apply Here</div>,
       },
     ],
     []

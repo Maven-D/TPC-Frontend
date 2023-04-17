@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Reigster() {
-  const [userType, setUserType] = useState("Student");
+  const [userType, setUserType] = useState("student");
   const [batch, setBatch] = useState();
   const navigator = useNavigate();
 

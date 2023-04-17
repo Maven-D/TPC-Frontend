@@ -25,7 +25,7 @@ function UpdatingProfile({
     const updatedS6M = document.getElementById("update-cs6m").value;
     const updatedS7M = document.getElementById("update-cs7m").value;
     const updatedS8M = document.getElementById("update-cs8m").value;
-    // const updatedBatch = document.getElementById("update-batch").value;
+    const updatedBatch = document.getElementById("update-batch").value;
     const updatedCGPA = document.getElementById("update-cgpa").value;
     const updatedArea = document.getElementById("update-areaofinterest").value;
     const updatedPassword = document.getElementById("update-password").value;
@@ -54,6 +54,7 @@ function UpdatingProfile({
         CGPA: updatedCGPA,
         areaofinterest: updatedArea,
         password: updatedPassword,
+        batch: updatedBatch,
       }),
     }).then((res) => {
       console.log({
