@@ -1,47 +1,27 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Reigster() {
   const [userType, setUserType] = useState("Student");
+  const [batch, setBatch] = useState();
   const navigator = useNavigate();
 
-  const userTypeSelection = () => {
-    switch (userType) {
-      case "student":
-        return (
-          <>
-            <input
-              type="text"
-              placeholder="Roll Number"
-              id="register-roll-number"
-            />
-            <input type="text" placeholder="Batch" id="register-batch" />
-            <input
-              type="text"
-              placeholder="Specialization"
-              id="register-specialization"
-            />
-          </>
-        );
-        break;
-      case "company":
-        return <input type="text" placeholder="Something for Company" />;
-        break;
-      case "alumni":
-        return (
-          <input
-            type="text"
-            placeholder="Roll Number"
-            id="register-roll-number"
-          />
-        );
-        break;
-      default:
-        break;
-    }
-  };
+  useEffect(() => {
+    fetch("/api/batchlist/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) =>
+      res.json().then((data) => setBatch(JSON.parse(data["batch"])))
+    );
+  }, []);
+
+  function getBatchOptions() {
+    return batch != undefined && batch.map((elem) => <option>{elem}</option>);
+  }
 
   function userRegister() {
     const email = document.getElementById("register-email").value;
@@ -51,15 +31,16 @@ function Reigster() {
     ).value;
     const name = document.getElementById("register-name").value;
     const rollNumberElem = document.getElementById("register-roll-number");
+    // const batchElem = document.getElementById("register-batch");
+    // const specializationElem = document.getElementById(
+    //   "register-specialization"
+    // );
     const batchElem = document.getElementById("register-batch");
-    const specializationElem = document.getElementById(
-      "register-specialization"
-    );
 
     const rollNumber = rollNumberElem != null ? rollNumberElem.value : "";
-    const batch = batchElem != null ? batchElem.value : "";
-    const specialization =
-      specializationElem != null ? specializationElem.value : "";
+    const batchValue = batchElem != null ? batchElem.value : "";
+    // const specialization =
+    //   specializationElem != null ? specializationElem.value : "";
     if (/\w+/.test(name) == false) {
       toast.error("Invalid Name!");
       return;
@@ -86,8 +67,7 @@ function Reigster() {
         email: email,
         password: password,
         roll_no: rollNumber,
-        batch: batch,
-        specialization: specialization,
+        batch: batchValue,
         user_type: userType,
       }),
     }).then((res) => {
@@ -110,7 +90,18 @@ function Reigster() {
           <option value="company">Company</option>
           <option value="alumni">Alumni</option>
         </select>
-        {userTypeSelection()}
+        {userType == "company" ? (
+          <input type="text" placeholder="Something for Company" />
+        ) : (
+          <>
+            <input
+              type="text"
+              placeholder="Roll Number"
+              id="register-roll-number"
+            />
+            <select id="register-batch">{getBatchOptions()}</select>
+          </>
+        )}
         <input type="email" placeholder="Name" id="register-name" />
         <input type="email" placeholder="Email" id="register-email" />
         <input type="password" placeholder="Password" id="register-password" />
@@ -120,18 +111,6 @@ function Reigster() {
           id="register-confirm-password"
         />
         <button onClick={userRegister}>Submit</button>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
       </div>
     </div>
   );

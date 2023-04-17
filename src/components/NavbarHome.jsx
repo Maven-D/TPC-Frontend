@@ -17,13 +17,14 @@ function NavbarHome() {
       })
     );
   }
+  // console.log(userType);
   return (
     <header>
       <Link to="/" className="logo">
         <img src="" alt="logo" className="image nav-logo" />
       </Link>
       <nav className="nav-bar">
-        <Link to="/profile" state={{ userType: "student", userLogin: true }}>
+        <Link to="/profile" state={{ userLogin: true }}>
           <div className="nav-item">Profile</div>
         </Link>
         <Link to="/welcome">

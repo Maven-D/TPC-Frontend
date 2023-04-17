@@ -34,10 +34,8 @@ function Login() {
           // console.log(`/:${data.user}`);
           // return redirect(`/:${data.user}`);
           toast.success("Login Successful!");
-          navigate("/", {
-            replace: true,
-            state: { user: data.user },
-          });
+          localStorage.setItem("userType", userType);
+          navigate("/");
           // todo redirect to home page
         } else {
           toast.error("Invalid data provided!");

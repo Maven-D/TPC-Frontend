@@ -1,13 +1,35 @@
 import React, { useEffect, useMemo, useState } from "react";
+
 // import styled from "styled-components";
 import { useTable, useSortBy } from "react-table";
 
 function JobList() {
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("/api/");
-  // }, []);
+  useEffect(() => {
+    fetch("/api/getjobs/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) =>
+      res.json().then((jobs) => {
+        let jobsArr = JSON.parse(jobs["jobs"]);
+        jobsArr = jobsArr.map((elem) => {
+          // { sno: 1, job_title: "SDE", company: "Google", ctc: 1000000 },
+          return {
+            sno: elem["pk"],
+            job_title: elem["fields"]["jobTitle"],
+            company: elem["fields"]["cid"],
+            minQualification: elem["fields"]["minQual"],
+          };
+        });
+        // console.log(jobsArr);
+
+        setData(jobsArr);
+      })
+    );
+  }, []);
   const columns = useMemo(
     () => [
       {
@@ -23,8 +45,15 @@ function JobList() {
         accessor: "company",
       },
       {
-        Header: "CTC",
-        accessor: "ctc",
+        Header: "Minimum Qualification",
+        accessor: "minQualification",
+      },
+      {
+        Header: "Apply",
+        accessor: "apply",
+        Cell: (props) => (
+          <a href={props.row.original.nameOfUrlProperty}> Apply Here</a>
+        ),
       },
     ],
     []
@@ -52,6 +81,7 @@ function JobList() {
   // We don't want to render all 2000 rows for this example, so cap
   // it at 20 for this use case
   const firstPageRows = rows.slice(0, 20);
+  // console.log(data);
 
   return (
     <div className="job-table">

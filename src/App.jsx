@@ -11,6 +11,7 @@ import "./SCSS/main.scss";
 import Profile from "./Views/Profile";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddJob from "./Views/AddJob";
 
 function App() {
   async function getUser() {
@@ -46,6 +47,10 @@ function App() {
     {
       path: "/profile",
       element: <Profile />,
+    },
+    {
+      path: "/addjobs",
+      element: <AddJob />,
     },
   ]);
 
