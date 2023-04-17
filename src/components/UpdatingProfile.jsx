@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 function UpdatingProfile({
@@ -88,15 +88,13 @@ function UpdatingProfile({
 
   function uploadFile() {
     const updatedResume = document.getElementById("update-resume").files[0];
-    if (data["fields"]["resume"] != "") return;
+    const formData = new FormData();
+    formData.append("File", updatedResume);
+    // if (data["fields"]["resume"] != "") return;
     fetch("/api/uploadresume/", {
       method: "POST",
-      body: updatedResume,
+      body: formData,
       // 👇 Set headers manually for single file upload
-      headers: {
-        "content-type": updatedResume.type,
-        "content-length": `${updatedResume.size}`, // 👈 Headers need to be a string
-      },
     });
   }
   return (
