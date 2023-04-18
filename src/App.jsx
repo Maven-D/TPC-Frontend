@@ -13,6 +13,7 @@ import ProfileView from "./Views/ProfileView";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddJob from "./Views/AddJob";
+import UpdatingProfile from "./Views/UpdatingProfile";
 
 function App() {
   async function getUser() {
@@ -54,10 +55,11 @@ function App() {
       element: <AddJob />,
     },
     {
-      path: "/user/profileview",
-      element: <ProfileView />,
+      path: "/updateprofile",
+      element: <UpdatingProfile />,
     },
   ]);
+  
 
   return (
     <>

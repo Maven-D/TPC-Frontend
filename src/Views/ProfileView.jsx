@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import JobComponent from "../components/JobComponent";
 import { toast } from "react-toastify";
 import UpdateProfile from "../assets/icons8-writer-male-24.png";
-import "../CSS/profile.css";
+
 import StudentProfileDisplay from "../components/StudentProfileDisplay";
-import UpdatingProfile from "../components/UpdatingProfile";
+import UpdatingProfile from "./UpdatingProfile";
 
 const userType = localStorage.getItem("userType");
 
