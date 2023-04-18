@@ -2,6 +2,11 @@ import React from "react";
 
 function StudentProfileDisplay({ data }) {
   const userType = localStorage.getItem("userType");
+
+  function downloadResume(e) {
+    e.preventDefault();
+    window.open(data["fields"]["resume"]);
+  }
   return (
     <div style={{ width: "70%" }}>
       <table>
@@ -22,7 +27,7 @@ function StudentProfileDisplay({ data }) {
             <tr>
               <td>Resume:</td>
               <td>
-                <a href={data["fields"]["resume"]} target="_blank">
+                <a onClick={(e) => downloadResume(e)} target="_blank">
                   Download Resume
                 </a>
               </td>

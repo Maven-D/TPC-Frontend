@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 // import styled from "styled-components";
 import { useTable, useSortBy } from "react-table";
 import { toast } from "react-toastify";
+import { Oval } from "react-loader-spinner";
 
 function JobList() {
   const [data, setData] = useState([]);
@@ -64,7 +65,7 @@ function JobList() {
   );
 
   const applyForJob = (cell) => {
-    console.log(cell?.row?.original);
+    // console.log(cell?.row?.original);
     fetch("/api/apply/", {
       method: "POST",
       headers: {
@@ -89,6 +90,32 @@ function JobList() {
   //   ],
   //   []
   // );
+
+  if (data == undefined)
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Oval
+          height={80}
+          width={80}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(

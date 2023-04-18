@@ -7,6 +7,7 @@ import UpdateProfile from "../assets/icons8-writer-male-24.png";
 
 import StudentProfileDisplay from "../components/StudentProfileDisplay";
 import UpdatingProfile from "./UpdatingProfile";
+import { Oval } from "react-loader-spinner";
 
 const userType = localStorage.getItem("userType");
 
@@ -14,7 +15,6 @@ function Profile() {
   const navigator = useNavigate();
   const [data, setData] = useState();
   const [appliedJobs, setAppliedJobs] = useState([]);
-  
 
   const location = useLocation();
   const { userLogin, userInfo: element } = location.state;
@@ -37,23 +37,24 @@ function Profile() {
   }, []);
 
   const downloadResume = () => {
-    fetch(`/api/viewpdf/?filename=${data["fields"]["resume"]}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": "application; ",
-      },
-    }).then((res) =>
-      res.blob().then((blob) => {
-        var pdfURL = window.URL.createObjectURL(blob);
+    // fetch(`/api/viewpdf/?filename=${data["fields"]["resume"]}`, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/pdf",
+    //     "Content-Disposition": "application; ",
+    //   },
+    // }).then((res) =>
+    //   res.blob().then((blob) => {
+    //     var pdfURL = window.URL.createObjectURL(blob);
 
-        let tempLink = document.createElement("a");
-        tempLink.href = pdfURL;
-        tempLink.download = "Resume.pdf";
+    //     let tempLink = document.createElement("a");
+    //     tempLink.href = pdfURL;
+    //     tempLink.download = "Resume.pdf";
 
-        tempLink.click();
-      })
-    );
+    //     tempLink.click();
+    //   })
+    // );
+    window.open(data["fields"]["resume"], "_blank");
   };
 
   async function getData() {
@@ -95,7 +96,31 @@ function Profile() {
   }
 
   // console.log(data);
-  if (data == undefined) return <div>no data</div>;
+  if (data == undefined)
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Oval
+          height={80}
+          width={80}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
   // if (appliedJobs == undefined) return <div>no jobs</div>;
   // userType = "company";
   console.log(data);
@@ -113,7 +138,7 @@ function Profile() {
 
           <div>
             <div className="image-div">
-              <img src={data['fields']['studprofilepic']} alt="COMPANY LOGO" />
+              <img src={data["fields"]["studprofilepic"]} alt="COMPANY LOGO" />
             </div>
           </div>
           {userLogin ? (
@@ -121,8 +146,8 @@ function Profile() {
               <img
                 src={UpdateProfile}
                 onClick={() =>
-                  navigator('/updateprofile', {
-                    state: {data: data}
+                  navigator("/updateprofile", {
+                    state: { data: data },
                   })
                 }
               />
@@ -153,7 +178,7 @@ function Profile() {
         <></>
       )}
     </>
-  ) 
+  );
 }
 
 export default Profile;
