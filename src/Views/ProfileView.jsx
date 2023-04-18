@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NavbarHome from "../components/NavbarHome";
-import { useLocation, useNavigate } from "react-router-dom";
-import JobComponent from "../components/JobComponent";
-import { toast } from "react-toastify";
-import UpdateProfile from "../assets/icons8-writer-male-24.png";
+import { useLocation } from "react-router-dom";
 
 import StudentProfileDisplay from "../components/StudentProfileDisplay";
-import UpdatingProfile from "./UpdatingProfile";
 
 const userType = localStorage.getItem("userType");
 
-function Profile() {
+function ProfileView() {
   //   const navigator = useNavigate();
   //   const [data, setData] = useState();
   //   const [appliedJobs, setAppliedJobs] = useState([]);
@@ -41,47 +37,24 @@ function Profile() {
   };
 
   return (
-    <div className="content">
-      <div>
-        <div style={{ width: "70%" }}>
-          <table>
-            <tbody>
-              <tr>
-                <td>Name:</td>
-                <td>{element["fields"]["name"]}</td>
-              </tr>
-              <tr>
-                <td>Roll No.:</td>
-                <td>{element["pk"]}</td>
-              </tr>
-              <tr>
-                <td>Email:</td>
-                <td>{element["fields"]["email"]}</td>
-              </tr>
-
-              <tr>
-                <td>Resume:</td>
-                <td>
-                  <a
-                    href={element["fields"]["resume"]}
-                    target="_blank"
-                    onClick={() => downloadResume()}
-                  >
-                    Download Resume
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div>
+    <>
+      <NavbarHome />
+      <div className="profile-div">
+        <div className="outer-div">
+          <StudentProfileDisplay
+            data={data}
+            downloadResume={downloadResume}
+            userType={userType}
+          />
           <div>
-            <img src="download.png" alt="COMPANY LOGO" />
+            <div className="image-div">
+              <img src={data["fields"]["studprofilepic"]} alt="COMPANY LOGO" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default Profile;
+export default ProfileView;

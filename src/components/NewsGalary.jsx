@@ -1,15 +1,12 @@
 import React from "react";
 import NewsRow from "./NewsRow";
 
-function NewsGalary() {
+function NewsGalary({ top3Data }) {
   return (
     <>
-      <h3 className="news-header">News Galary</h3>
+      <h3 className="news-header">Top 3 Company</h3>
       <div className="news-grid">
-        <NewsRow title="random" content="lorem30" />
-        <NewsRow title="random" content="lorem30" />
-        <NewsRow title="random" content="lorem30" />
-        <NewsRow title="random" content="lorem30" />
+        <NewsRow top3Data={top3Data} />
       </div>
     </>
   );

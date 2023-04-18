@@ -1,7 +1,9 @@
 import { React, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Lottie from "lottie-react";
+import animationData from "../assets/lottie/registerLottie.json";
 
 function Reigster() {
   const [userType, setUserType] = useState("student");
@@ -82,35 +84,46 @@ function Reigster() {
   }
 
   return (
-    <div className="form">
-      <h2 className="header">Register</h2>
-      <div className="details">
-        <select value={userType} onChange={(e) => setUserType(e.target.value)}>
-          <option value="student">Student</option>
-          <option value="company">Company</option>
-          <option value="alumni">Alumni</option>
-        </select>
-        {userType == "company" ? (
-          <input type="text" placeholder="Something for Company" />
-        ) : (
-          <>
-            <input
-              type="text"
-              placeholder="Roll Number"
-              id="register-roll-number"
-            />
-            <select id="register-batch">{getBatchOptions()}</select>
-          </>
-        )}
-        <input type="email" placeholder="Name" id="register-name" />
-        <input type="email" placeholder="Email" id="register-email" />
-        <input type="password" placeholder="Password" id="register-password" />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          id="register-confirm-password"
-        />
-        <button onClick={userRegister}>Submit</button>
+    <div className="container">
+      <div className="lottie">
+        <Lottie animationData={animationData} />
+      </div>
+      <div className="form">
+        <h2 className="header">Register</h2>
+        <div className="details">
+          <select
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+          >
+            <option value="student">Student</option>
+            <option value="company">Company</option>
+            <option value="alumni">Alumni</option>
+          </select>
+          {userType != "company" && (
+            <>
+              <input
+                type="text"
+                placeholder="Roll Number"
+                id="register-roll-number"
+              />
+              <select id="register-batch">{getBatchOptions()}</select>
+            </>
+          )}
+          <input type="email" placeholder="Name" id="register-name" />
+          <input type="email" placeholder="Email" id="register-email" />
+          <input
+            type="password"
+            placeholder="Password"
+            id="register-password"
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            id="register-confirm-password"
+          />
+          <button onClick={userRegister}>Submit</button>
+          <Link to="/login">Already Registered? Login here</Link>
+        </div>
       </div>
     </div>
   );

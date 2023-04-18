@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarWelcome from "../components/NavbarWelcome";
 import { Link } from "react-router-dom";
 import NewsGalary from "../components/NewsGalary";
 
 function Welcome() {
+  const [top3Data, setTop3Data] = useState();
+
+  useEffect(() => {
+    fetch("/api/top3/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) =>
+      res.json().then((data) => setTop3Data(JSON.parse(data["top3"])))
+    );
+  }, []);
   return (
     <>
       <NavbarWelcome />
@@ -19,7 +31,7 @@ function Welcome() {
           <span>Register</span>
         </Link>
       </div>
-      <NewsGalary />
+      <NewsGalary top3Data={top3Data} />
     </>
   );
 }

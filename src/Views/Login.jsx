@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Lottie from "lottie-react";
+import animationData from "../assets/lottie/loginLottie.json";
 
 function Login() {
   const navigate = useNavigate();
@@ -45,17 +47,28 @@ function Login() {
   }
 
   return (
-    <div className="form">
-      <h2 className="header">Login</h2>
-      <div className="details">
-        <select value={userType} onChange={(e) => setUserType(e.target.value)}>
-          <option value="student">Student</option>
-          <option value="company">Company</option>
-          <option value="alumni">Alumni</option>
-        </select>
-        <input type="email" placeholder="Email" id="login-email" />
-        <input type="password" placeholder="Password" id="login-password" />
-        <button onClick={userLogin}>Submit</button>
+    <div className="container">
+      <div className="form">
+        <h2 className="header">Login</h2>
+        <div className="details">
+          <select
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+          >
+            <option value="student">Student</option>
+            <option value="company">Company</option>
+            <option value="alumni">Alumni</option>
+          </select>
+          <input type="email" placeholder="Email" id="login-email" />
+          <input type="password" placeholder="Password" id="login-password" />
+          <button onClick={userLogin}>Submit</button>
+        </div>
+        <Link to="/register">Not Register? Sign up here!</Link>
+      </div>
+      <div className="lottie">
+        <div>
+          <Lottie animationData={animationData} />
+        </div>
       </div>
     </div>
   );

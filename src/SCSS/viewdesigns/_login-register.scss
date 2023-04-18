@@ -1,10 +1,15 @@
 @use "../abstract/mixins" as mixins;
 @use "../abstract/fonts" as fonts;
 
-.form {
-  height: 70vh;
-  @include mixins.flexCenter(column);
+.container {
+  width: 100%;
+  display: flex;
+}
 
+.form {
+  height: 100vh;
+  width: 50%;
+  @include mixins.flexCenter(column);
   .header {
     font-size: fonts.getFontSize("header");
     margin-bottom: 40px;
@@ -13,6 +18,8 @@
   .details {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     input,
     select {
@@ -27,6 +34,23 @@
       color: white;
       border-radius: 10px;
       margin-top: 30px;
+      width: 300px;
     }
+  }
+  a {
+    margin-top: 20px;
+  }
+}
+
+.lottie {
+  width: 50%;
+  height: 100vh;
+  background-color: skyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    height: 70vh;
   }
 }
