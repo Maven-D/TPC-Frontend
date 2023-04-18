@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const userType = localStorage.getItem("userType");
 
-async function expandTile(userType, navigator) {
+async function expandTile(userType, navigator, e) {
   if (userType != "company") return;
   // html for expanded tile
   let table = document.createElement("table");
@@ -54,7 +54,7 @@ async function expandTile(userType, navigator) {
     tr.appendChild(td3);
     tbody.appendChild(tr);
   });
-  const parent = document.getElementById("expanding-tiles");
+  const parent = document.getElementById("jobs-parent");
   console.log(parent);
   parent.appendChild(table);
 }
@@ -68,22 +68,24 @@ function SingleJobEntry(elem) {
   return (
     <div
       className="job-tile"
-      onClick={() => expandTile(userType, navigator)}
+      onClick={(e) => expandTile(userType, navigator, e)}
       id="expanding-tiles"
     >
-      <div className="jobs">
-        <div className="job-component-cname">
-          <h3>{finalName}</h3>
-          <h3>{elem["fields"]["jobTitle"]}</h3>
+      <div className="jobs-parent" id="jobs-parent">
+        <div className="jobs">
+          <div className="job-component-cname">
+            <h3>{finalName}</h3>
+            <h3>{elem["fields"]["jobTitle"]}</h3>
+          </div>
+          <div className="job-component-desc">
+            <h3>JOB DESCRIPTION</h3>
+            <p>{elem["fields"]["jobDesc"]}</p>
+          </div>
+          <div className="ctc-job-component">
+            <h4>CTC:{elem["fields"]["ctc"]}</h4>
+          </div>
+          {userType == "company" ? <div>&darr;</div> : <></>}
         </div>
-        <div className="job-component-desc">
-          <h3>JOB DESCRIPTION</h3>
-          <p>{elem["fields"]["jobDesc"]}</p>
-        </div>
-        <div className="ctc-job-component">
-          <h4>CTC:{elem["fields"]["ctc"]}</h4>
-        </div>
-        {userType == "company" ? <div>&darr;</div> : <></>}
       </div>
     </div>
   );

@@ -58,8 +58,11 @@ function App() {
       path: "/updateprofile",
       element: <UpdatingProfile />,
     },
+    {
+      path: "/user/profileview",
+      element: <ProfileView />,
+    },
   ]);
-  
 
   return (
     <>

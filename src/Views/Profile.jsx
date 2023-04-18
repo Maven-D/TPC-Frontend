@@ -168,8 +168,11 @@ function Profile() {
             }}
           >
             <h2 className="job-component-title">Jobs</h2>
+
             {userType == "company" && (
-              <button onClick={addNewJob}>ADD NEW JOB</button>
+              <div className="button-add-job">
+                <button onClick={addNewJob}>ADD NEW JOB</button>
+              </div>
             )}
           </div>
           <JobComponent appliedJobs={appliedJobs} userType={userType} />
