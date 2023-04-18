@@ -149,7 +149,7 @@ function CompanyUpdateProfile() {
 
         <label for="timeofstart">Time of start in IITP:</label>
         <input
-          type="number"
+          type="text"
           id="update-time-of-start"
           name="timeofstart"
           defaultValue={data["fields"]["time_of_start_iitp"]}
@@ -157,7 +157,7 @@ function CompanyUpdateProfile() {
 
         <label for="required-candidate">Required Candidate Details:</label>
         <input
-          type="number"
+          type="text"
           id="update-required-candidate"
           name="required-candidate"
           defaultValue={data["fields"]["reqCandDet"]}
@@ -165,7 +165,7 @@ function CompanyUpdateProfile() {
 
         <label for="password">Password:</label>
         <input
-          type="number"
+          type="password"
           id="update-password"
           name="password"
           defaultValue={data["fields"]["password"]}
