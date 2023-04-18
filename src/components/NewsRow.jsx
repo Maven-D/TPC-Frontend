@@ -3,12 +3,16 @@ import React, { useEffect, useState } from "react";
 function NewsRow({ top3Data }) {
   console.log(top3Data);
   if (top3Data == undefined) return;
-  return top3Data.map((elem) => (
-    <div className="grid-column-elem">
-      <img src={elem["fields"]["companypic"]} alt="image" />
-      <h6 className="elem-title">{elem["fields"]["name"]}</h6>
+  return (
+    <div className="grid-element">
+      {top3Data.map((elem) => (
+        <div className="grid-column-elem">
+          <img src={elem["fields"]["companypic"]} alt="image" />
+          <h6 className="elem-title">{elem["fields"]["name"]}</h6>
+        </div>
+      ))}
     </div>
-  ));
+  );
   // <div className="grid-element">
   //   <div className="grid-column-elem">
   //     <img src={top3Data[0]["fields"]["companypic"]} alt="image" />

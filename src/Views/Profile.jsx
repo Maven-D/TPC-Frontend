@@ -96,7 +96,7 @@ function Profile() {
   }
 
   // console.log(data);
-  if (data == undefined)
+  if (data == undefined || appliedJobs == undefined)
     return (
       <div
         style={{
