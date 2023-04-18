@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import JobComponent from "../components/JobComponent";
 import { toast } from "react-toastify";
 import UpdateProfile from "../assets/icons8-writer-male-24.png";
-import "../CSS/profile.css";
+
 import StudentProfileDisplay from "../components/StudentProfileDisplay";
-import UpdatingProfile from "../components/UpdatingProfile";
+import UpdatingProfile from "./UpdatingProfile";
 
 const userType = localStorage.getItem("userType");
 
@@ -14,11 +14,11 @@ function Profile() {
   const navigator = useNavigate();
   const [data, setData] = useState();
   const [appliedJobs, setAppliedJobs] = useState([]);
-  const [updatingProfile, setUpdatingProfile] = useState(false);
+  
 
   const location = useLocation();
   const { userLogin, userInfo: element } = location.state;
-  console.log(userType);
+  console.log(userLogin);
 
   const addNewJob = () => {
     navigator("/addjobs");
@@ -98,13 +98,13 @@ function Profile() {
   if (data == undefined) return <div>no data</div>;
   // if (appliedJobs == undefined) return <div>no jobs</div>;
   // userType = "company";
-  // console.log(appliedJobs);
+  console.log(data);
   // console.log(userType);
-  return !updatingProfile ? (
+  return (
     <>
       <NavbarHome />
-      <div className="content">
-        <div>
+      <div className="profile-div">
+        <div className="outer-div">
           <StudentProfileDisplay
             data={data}
             downloadResume={downloadResume}
@@ -112,16 +112,18 @@ function Profile() {
           />
 
           <div>
-            <div>
-              <img src="download.png" alt="COMPANY LOGO" />
+            <div className="image-div">
+              <img src={data['fields']['studprofilepic']} alt="COMPANY LOGO" />
             </div>
           </div>
           {userLogin ? (
-            <div>
+            <div className="update-profile">
               <img
                 src={UpdateProfile}
                 onClick={() =>
-                  setUpdatingProfile((updatingProfile) => !updatingProfile)
+                  navigator('/updateprofile', {
+                    state: {data: data}
+                  })
                 }
               />
             </div>
@@ -140,7 +142,7 @@ function Profile() {
               marginLeft: "47%",
             }}
           >
-            <h2 style={{ flexGrow: "1" }}>Jobs</h2>
+            <h2 className="job-component-title">Jobs</h2>
             {userType == "company" && (
               <button onClick={addNewJob}>ADD NEW JOB</button>
             )}
@@ -151,10 +153,7 @@ function Profile() {
         <></>
       )}
     </>
-  ) : (
-    // add updating profile html
-    <UpdatingProfile updatingProfileFunction={setUpdatingProfile} data={data} />
-  );
+  ) 
 }
 
 export default Profile;

@@ -63,24 +63,25 @@ function SingleJobEntry(elem) {
   // const [whoApplied, setWhoApplied] = useState();
   const navigator = useNavigate();
   console.log(elem);
+  const cname = elem["fields"]["cid"];
+  const finalName = cname.substring(0, cname.indexOf("_"));
   return (
     <div
-      className="content"
+      className="job-tile"
       onClick={() => expandTile(userType, navigator)}
       id="expanding-tiles"
     >
       <div className="jobs">
-        <div style={{ width: "30%" }}>
-          <h3 align="center"></h3>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="download.png" alt="COMPANY LOGO" />
-          </div>
-          <h3 align="center">{elem["fields"]["jobTitle"]}</h3>
+        <div className="job-component-cname">
+          <h3 >{finalName}</h3>
+          <h3 >{elem["fields"]["jobTitle"]}</h3>
         </div>
-        <div style={{ width: "70%" }}>
+        <div className="job-component-desc">
           <h3>JOB DESCRIPTION</h3>
           <p>{elem["fields"]["jobDesc"]}</p>
-          <h4 align="center">CTC:{elem["fields"]["ctc"]}</h4>
+        </div>
+        <div className="ctc-job-component">
+          <h4 >CTC:{elem["fields"]["ctc"]}</h4>
         </div>
         {userType == "company" ? <div>&darr;</div> : <></>}
       </div>
