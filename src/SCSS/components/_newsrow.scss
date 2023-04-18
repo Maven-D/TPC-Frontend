@@ -11,5 +11,10 @@
 
   .grid-column-elem {
     @include flexCenter(column);
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

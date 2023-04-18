@@ -7,29 +7,14 @@ function NewsRow({ top3Data }) {
     <div className="grid-element">
       {top3Data.map((elem) => (
         <div className="grid-column-elem">
-          <img src={elem["fields"]["companypic"]} alt="image" />
+          <div style={{ width: "400px", height: "400px" }}>
+            <img src={elem["fields"]["companypic"]} alt="image" />
+          </div>
           <h6 className="elem-title">{elem["fields"]["name"]}</h6>
         </div>
       ))}
     </div>
   );
-  // <div className="grid-element">
-  //   <div className="grid-column-elem">
-  //     <img src={top3Data[0]["fields"]["companypic"]} alt="image" />
-  //     <h6 className="elem-title">{}</h6>
-  //     <p></p>
-  //   </div>
-  //   <div className="grid-column-elem">
-  //     <img src={top3Data[1]["fields"]["companypic"]} alt="image" />
-  //     <h6 className="elem-title"></h6>
-  //     <p></p>
-  //   </div>
-  //   <div className="grid-column-elem">
-  //     <img src={top3Data[2]["fields"]["companypic"]} alt="image" />
-  //     <h6 className="elem-title"></h6>
-  //     <p></p>
-  //   </div>
-  // </div>
 }
 
 export default NewsRow;
