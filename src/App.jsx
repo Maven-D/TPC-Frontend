@@ -9,6 +9,7 @@ import Register from "./Views/Reigster";
 import Home from "./Views/Home";
 import "./SCSS/main.scss";
 import Profile from "./Views/Profile";
+import ProfileView from "./Views/ProfileView";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddJob from "./Views/AddJob";
@@ -51,6 +52,10 @@ function App() {
     {
       path: "/addjobs",
       element: <AddJob />,
+    },
+    {
+      path: "/user/profileview",
+      element: <ProfileView />,
     },
   ]);
 

@@ -22,6 +22,7 @@ function AddJob() {
         jobDesc: jobDesc,
         flag_job: true,
         minQual: minQualification,
+        ctc: salaryPackage,
       }),
     }).then((res) => {
       if (res.status == 200) {

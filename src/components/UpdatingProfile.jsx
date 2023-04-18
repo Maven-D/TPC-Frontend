@@ -29,6 +29,8 @@ function UpdatingProfile({
     const updatedCGPA = document.getElementById("update-cgpa").value;
     const updatedArea = document.getElementById("update-areaofinterest").value;
     const updatedPassword = document.getElementById("update-password").value;
+    const updatedResume = document.getElementById("update-resume").values;
+
     // console.log(updatedName);
     fetch("/api/updateprofile/", {
       method: "POST",
@@ -55,6 +57,7 @@ function UpdatingProfile({
         areaofinterest: updatedArea,
         password: updatedPassword,
         batch: updatedBatch,
+        resume: updatedResume,
       }),
     }).then((res) => {
       console.log({
@@ -86,17 +89,6 @@ function UpdatingProfile({
     });
   };
 
-  function uploadFile() {
-    const updatedResume = document.getElementById("update-resume").files[0];
-    const formData = new FormData();
-    formData.append("File", updatedResume);
-    // if (data["fields"]["resume"] != "") return;
-    fetch("/api/uploadresume/", {
-      method: "POST",
-      body: formData,
-      // 👇 Set headers manually for single file upload
-    });
-  }
   return (
     <div className="content">
       <div style={{ display: "flex" }}>
@@ -259,7 +251,7 @@ function UpdatingProfile({
             <tr>
               <td style={{ padding: "0%" }}>
                 <input
-                  type="file"
+                  type="text"
                   name="resume"
                   placeholder="Resume"
                   id="update-resume"

@@ -17,7 +17,7 @@ function Profile() {
   const [updatingProfile, setUpdatingProfile] = useState(false);
 
   const location = useLocation();
-  const { userLogin } = location.state;
+  const { userLogin, userInfo: element } = location.state;
   console.log(userType);
 
   const addNewJob = () => {

@@ -32,21 +32,6 @@ function JobList() {
     );
   }, []);
 
-  const applyForJob = () => {
-    fetch("/api/apply/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        jid: jobsArr["sno"],
-      }),
-    }).then((res) => {
-      if (res.ok()) {
-        toast.success("Applied Successfully!");
-      }
-    });
-  };
   const columns = useMemo(
     () => [
       {
@@ -69,7 +54,7 @@ function JobList() {
         Header: "Apply",
         accessor: "apply",
         Cell: (props) => (
-          <div onClick={applyForJob} style={{ cursor: "pointer" }}>
+          <div onClick={() => applyForJob(props)} style={{ cursor: "pointer" }}>
             Apply Here
           </div>
         ),
@@ -77,6 +62,23 @@ function JobList() {
     ],
     []
   );
+
+  const applyForJob = (cell) => {
+    console.log(cell?.row?.original);
+    fetch("/api/apply/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jid: cell?.row?.original["sno"],
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        toast.success("Applied Successfully!");
+      }
+    });
+  };
 
   // const data = useMemo(
   //   () => [

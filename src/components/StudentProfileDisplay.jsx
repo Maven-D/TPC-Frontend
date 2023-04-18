@@ -1,6 +1,6 @@
 import React from "react";
 
-function StudentProfileDisplay({ data, downloadResume }) {
+function StudentProfileDisplay({ data }) {
   const userType = localStorage.getItem("userType");
   return (
     <div style={{ width: "70%" }}>
@@ -22,7 +22,9 @@ function StudentProfileDisplay({ data, downloadResume }) {
             <tr>
               <td>Resume:</td>
               <td>
-                <button onClick={downloadResume}>Download Resume</button>
+                <a href={data["fields"]["resume"]} target="_blank">
+                  Download Resume
+                </a>
               </td>
             </tr>
           )}
