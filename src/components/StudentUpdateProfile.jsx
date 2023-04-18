@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -49,7 +49,7 @@ function StudentUpdateProfile() {
     // const updatedCGPA = document.getElementById("update-cgpa").value;
     const updatedArea = document.getElementById("update-areaofinterest").value;
     const updatedPassword = document.getElementById("update-password").value;
-    const updatedResume = document.getElementById("update-resume").values;
+    const updatedResume = document.getElementById("update-resume").value;
 
     // fetch('/api/getcpi', {
     //   method: "GET",
@@ -83,7 +83,6 @@ function StudentUpdateProfile() {
         msem6: updatedS6M,
         msem7: updatedS7M,
         msem8: updatedS8M,
-        // CGPA: cgpa,
         areaofinterest: updatedArea,
         password: updatedPassword,
         batch: updatedBatch,
