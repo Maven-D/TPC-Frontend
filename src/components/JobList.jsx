@@ -22,7 +22,10 @@ function JobList() {
           return {
             sno: elem["pk"],
             job_title: elem["fields"]["jobTitle"],
-            company: elem["fields"]["cid"],
+            company: elem["fields"]["cid"].substring(
+              0,
+              elem["fields"]["cid"].indexOf("_")
+            ),
             minQualification: elem["fields"]["minQual"],
           };
         });

@@ -56,7 +56,7 @@ async function expandTile(userType, navigator) {
   });
   const parent = document.getElementById("expanding-tiles");
   console.log(parent);
-  parent.parentNode.appendChild(table);
+  parent.appendChild(table);
 }
 
 function SingleJobEntry(elem) {
@@ -73,15 +73,15 @@ function SingleJobEntry(elem) {
     >
       <div className="jobs">
         <div className="job-component-cname">
-          <h3 >{finalName}</h3>
-          <h3 >{elem["fields"]["jobTitle"]}</h3>
+          <h3>{finalName}</h3>
+          <h3>{elem["fields"]["jobTitle"]}</h3>
         </div>
         <div className="job-component-desc">
           <h3>JOB DESCRIPTION</h3>
           <p>{elem["fields"]["jobDesc"]}</p>
         </div>
         <div className="ctc-job-component">
-          <h4 >CTC:{elem["fields"]["ctc"]}</h4>
+          <h4>CTC:{elem["fields"]["ctc"]}</h4>
         </div>
         {userType == "company" ? <div>&darr;</div> : <></>}
       </div>
@@ -90,7 +90,11 @@ function SingleJobEntry(elem) {
 }
 
 function JobComponent({ appliedJobs }) {
-  return appliedJobs.map((elem) => SingleJobEntry(elem));
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      {appliedJobs.map((elem) => SingleJobEntry(elem))}
+    </div>
+  );
 }
 
 export default JobComponent;
